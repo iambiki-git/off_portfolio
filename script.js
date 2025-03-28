@@ -187,6 +187,7 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 
+
 // Dark mode toggle
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 if (darkModeToggle) {
@@ -216,3 +217,95 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
+
+// typewriter effect for hero section
+document.addEventListener('DOMContentLoaded', function() {
+    const titleElement = document.getElementById('typewriter-title');
+    const subtitleElement = document.getElementById('typewriter-subtitle');
+    
+    const titleText = "Hi, there! I'm BIKI.";
+    const subtitleText = "Web Developer";
+    
+    let titleIndex = 0;
+    let subtitleIndex = 0;
+    let isDeleting = false;
+    let isSubtitleDeleting = false;
+    let typingSpeed = 100;
+    
+    function typeTitle() {
+        if (isDeleting) {
+            titleElement.textContent = titleText.substring(0, titleIndex - 1);
+            titleIndex--;
+            typingSpeed = 50;
+        } else {
+            titleElement.textContent = titleText.substring(0, titleIndex + 1);
+            titleIndex++;
+            typingSpeed = 100;
+        }
+        
+        if (!isDeleting && titleIndex === titleText.length) {
+            typingSpeed = 1500; // Pause at end
+            isDeleting = true;
+        } else if (isDeleting && titleIndex === 0) {
+            isDeleting = false;
+            typingSpeed = 500; // Pause at start
+        }
+        
+        setTimeout(typeTitle, typingSpeed);
+    }
+    
+    function typeSubtitle() {
+        if (isSubtitleDeleting) {
+            subtitleElement.textContent = subtitleText.substring(0, subtitleIndex - 1);
+            subtitleIndex--;
+            typingSpeed = 50;
+        } else {
+            subtitleElement.textContent = subtitleText.substring(0, subtitleIndex + 1);
+            subtitleIndex++;
+            typingSpeed = 100;
+        }
+        
+        if (!isSubtitleDeleting && subtitleIndex === subtitleText.length) {
+            typingSpeed = 1500;
+            isSubtitleDeleting = true;
+        } else if (isSubtitleDeleting && subtitleIndex === 0) {
+            isSubtitleDeleting = false;
+            typingSpeed = 500;
+        }
+        
+        setTimeout(typeSubtitle, typingSpeed);
+    }
+    
+    // Start animations with slight delay between them
+    setTimeout(typeTitle, 500);
+    setTimeout(typeSubtitle, 1500);
+});
+
+
+  // Floating indicator animation
+ const navItems = document.querySelectorAll('[data-nav-item]');
+ const floatingIndicator = document.getElementById('floating-indicator');
+ 
+ function updateIndicator(el) {
+   const { width, left } = el.getBoundingClientRect();
+   const containerLeft = el.closest('div').getBoundingClientRect().left;
+   
+   floatingIndicator.style.width = `${width}px`;
+   floatingIndicator.style.left = `${left - containerLeft}px`;
+ }
+ 
+ navItems.forEach(item => {
+   item.addEventListener('mouseenter', () => updateIndicator(item));
+   
+   item.addEventListener('click', function() {
+     navItems.forEach(i => i.classList.remove('text-blue-600'));
+     this.classList.add('text-blue-600');
+     updateIndicator(this);
+   });
+ });
+ 
+ // Initialize with first item active
+ navItems[0].classList.add('text-blue-600');
+ updateIndicator(navItems[0]);
