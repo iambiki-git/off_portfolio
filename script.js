@@ -309,3 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
  // Initialize with first item active
  navItems[0].classList.add('text-blue-600');
  updateIndicator(navItems[0]);
+
+
+
+ 
