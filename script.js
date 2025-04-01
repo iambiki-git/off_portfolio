@@ -1,316 +1,168 @@
-// Mobile menu toggle
-const mobileMenuButton = document.querySelector('.mobile-menu-button');
-const mobileMenu = document.querySelector('.mobile-menu');
 
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
-});
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
+//Initialization script 
+// Wait for everything to load
+window.addEventListener('load', function() {
+    // Simple configuration that definitely works
+    particlesJS('particles-js', {
+    "particles": {
+        "number": {
+        "value": 80,
+        "density": {
+            "enable": true,
+            "value_area": 800
         }
+        },
+        "color": {
+        "value": "#ffffff"
+        },
+        "shape": {
+        "type": "circle"
+        },
+        "opacity": {
+        "value": 0.5,
+        "random": false
+        },
+        "size": {
+        "value": 3,
+        "random": true
+        },
+        "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+        },
+        "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false
+        }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+        "onhover": {
+            "enable": true,
+            "mode": "grab"
+        },
+        "onclick": {
+            "enable": true,
+            "mode": "push"
+        }
+        }
+    },
+    "retina_detect": true
     });
 });
 
-// Active link highlighting based on scroll position
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav a');
+// Toggle mobile menu
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+    
+    // Optional: Change icon when menu is open
+    const icon = this.querySelector('svg');
+    if (menu.classList.contains('hidden')) {
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+    } else {
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+    }
+});
 
-window.addEventListener('scroll', () => {
-    let current = '';
+// Close mobile menu when clicking a link
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('mobile-menu-button').querySelector('svg').innerHTML = 
+        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+    });
+});
+
+// Scroll-triggered animations
+window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('.content-section');
+    const scrollPosition = window.scrollY + window.innerHeight;
     
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= (sectionTop - 100)) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('text-blue-600');
-        link.classList.add('text-gray-500');
-        
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.remove('text-gray-500');
-            link.classList.add('text-blue-600');
-        }
-    });
-});
-
-// Form submission with validation
-const contactForm = document.querySelector('form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
-        
-        // Simple validation
-        if (!data.name || !data.email || !data.message) {
-            alert('Please fill in all required fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // Here you would typically send the data to a server
-        // For demonstration, we'll just log it and show a success message
-        console.log('Form submitted:', data);
-        
-        // Show success message
-        const submitButton = this.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
-        
-        // Simulate API call
-        setTimeout(() => {
-            submitButton.textContent = 'Message Sent!';
-            
-            // Reset form and button after 2 seconds
-            setTimeout(() => {
-                this.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 2000);
-        }, 1500);
-    });
-}
-
-// Scroll to top button
-const scrollToTopButton = document.createElement('button');
-scrollToTopButton.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-    </svg>
-`;
-scrollToTopButton.className = 'fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 opacity-0 invisible z-50';
-document.body.appendChild(scrollToTopButton);
-
-scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollToTopButton.classList.remove('opacity-0', 'invisible');
-        scrollToTopButton.classList.add('opacity-100', 'visible');
-    } else {
-        scrollToTopButton.classList.remove('opacity-100', 'visible');
-        scrollToTopButton.classList.add('opacity-0', 'invisible');
+    const sectionPosition = section.offsetTop;
+    if (scrollPosition > sectionPosition + 100) {
+        section.classList.add('active');
     }
+    });
 });
 
-// Project filtering functionality (if you have filter buttons)
-const filterButtons = document.querySelectorAll('.filter-button');
-const projectItems = document.querySelectorAll('.project-item');
+// Trigger initial check in case content is already in view
+window.dispatchEvent(new Event('scroll'));
 
-if (filterButtons.length > 0) {
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('bg-blue-600', 'text-white'));
-            
-            // Add active class to clicked button
-            button.classList.add('bg-blue-600', 'text-white');
-            
-            const filterValue = button.getAttribute('data-filter');
-            
-            projectItems.forEach(item => {
-                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        });
-    });
-}
 
-// Animation on scroll
-function animateOnScroll() {
-    const elements = document.querySelectorAll('.animate-on-scroll');
+
+// Form submission simulation
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+e.preventDefault();
+
+const btn = document.getElementById('submitBtn');
+const btnText = document.getElementById('btnText');
+const successIcon = document.getElementById('successIcon');
+
+// Show sending state
+btnText.textContent = 'Sending...';
+btn.disabled = true;
+
+// Simulate form submission (replace with actual AJAX call)
+setTimeout(() => {
+    // Show success state
+    btnText.textContent = 'Sent!';
+    successIcon.classList.remove('hidden');
     
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (elementPosition < screenPosition) {
-            element.classList.add('opacity-100', 'translate-y-0');
-            element.classList.remove('opacity-0', 'translate-y-10');
-        }
-    });
-}
-
-// Initialize animations
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    el.classList.add('transition', 'duration-500', 'ease-in-out', 'opacity-0', 'translate-y-10');
+    // Clear form
+    this.reset();
+    
+    // Reset button after 2 seconds
+    setTimeout(() => {
+    btnText.textContent = 'Send Message';
+    successIcon.classList.add('hidden');
+    btn.disabled = false;
+    }, 2000);
+}, 1000);
 });
 
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll);
 
-
-// Dark mode toggle
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        
-        // Save preference to localStorage
-        const isDark = document.documentElement.classList.contains('dark');
-        localStorage.setItem('darkMode', isDark);
-    });
-    
-    // Check for saved preference
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.documentElement.classList.add('dark');
-    }
-}
-
-
+// Simple typing animation (can be enhanced with a library like Typed.js)
 document.addEventListener('DOMContentLoaded', function() {
-    const skillBars = document.querySelectorAll('[data-percent]');
-    
-    skillBars.forEach(bar => {
-        const percent = bar.getAttribute('data-percent');
-        setTimeout(() => {
-            bar.style.width = percent + '%';
-        }, 100);
-    });
-});
-
-
-
-
-// typewriter effect for hero section
-document.addEventListener('DOMContentLoaded', function() {
-    const titleElement = document.getElementById('typewriter-title');
-    const subtitleElement = document.getElementById('typewriter-subtitle');
-    
-    const titleText = "Hi, there! I'm BIKI.";
-    const subtitleText = "Web Developer";
-    
-    let titleIndex = 0;
-    let subtitleIndex = 0;
+    const typedTextSpan = document.querySelector('.typed-text');
+    const cursorSpan = document.querySelector('.cursor');
+    const texts = typedTextSpan.getAttribute('data-typed').replace(/[\[\]"]/g, '').split(',');
+    let textIndex = 0;
+    let charIndex = 0;
     let isDeleting = false;
-    let isSubtitleDeleting = false;
-    let typingSpeed = 100;
     
-    function typeTitle() {
+    function type() {
+        const currentText = texts[textIndex];
+        
         if (isDeleting) {
-            titleElement.textContent = titleText.substring(0, titleIndex - 1);
-            titleIndex--;
-            typingSpeed = 50;
+            typedTextSpan.textContent = currentText.substring(0, charIndex-1);
+            charIndex--;
         } else {
-            titleElement.textContent = titleText.substring(0, titleIndex + 1);
-            titleIndex++;
-            typingSpeed = 100;
+            typedTextSpan.textContent = currentText.substring(0, charIndex+1);
+            charIndex++;
         }
         
-        if (!isDeleting && titleIndex === titleText.length) {
-            typingSpeed = 1500; // Pause at end
+        if (!isDeleting && charIndex === currentText.length) {
             isDeleting = true;
-        } else if (isDeleting && titleIndex === 0) {
+            setTimeout(type, 1500);
+        } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
-            typingSpeed = 500; // Pause at start
-        }
-        
-        setTimeout(typeTitle, typingSpeed);
-    }
-    
-    function typeSubtitle() {
-        if (isSubtitleDeleting) {
-            subtitleElement.textContent = subtitleText.substring(0, subtitleIndex - 1);
-            subtitleIndex--;
-            typingSpeed = 50;
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 500);
         } else {
-            subtitleElement.textContent = subtitleText.substring(0, subtitleIndex + 1);
-            subtitleIndex++;
-            typingSpeed = 100;
+            setTimeout(type, isDeleting ? 50 : 100);
         }
-        
-        if (!isSubtitleDeleting && subtitleIndex === subtitleText.length) {
-            typingSpeed = 1500;
-            isSubtitleDeleting = true;
-        } else if (isSubtitleDeleting && subtitleIndex === 0) {
-            isSubtitleDeleting = false;
-            typingSpeed = 500;
-        }
-        
-        setTimeout(typeSubtitle, typingSpeed);
     }
     
-    // Start animations with slight delay between them
-    setTimeout(typeTitle, 500);
-    setTimeout(typeSubtitle, 1500);
+    setTimeout(type, 1000);
 });
-
-
-  // Floating indicator animation
- const navItems = document.querySelectorAll('[data-nav-item]');
- const floatingIndicator = document.getElementById('floating-indicator');
- 
- function updateIndicator(el) {
-   const { width, left } = el.getBoundingClientRect();
-   const containerLeft = el.closest('div').getBoundingClientRect().left;
-   
-   floatingIndicator.style.width = `${width}px`;
-   floatingIndicator.style.left = `${left - containerLeft}px`;
- }
- 
- navItems.forEach(item => {
-   item.addEventListener('mouseenter', () => updateIndicator(item));
-   
-   item.addEventListener('click', function() {
-     navItems.forEach(i => i.classList.remove('text-blue-600'));
-     this.classList.add('text-blue-600');
-     updateIndicator(this);
-   });
- });
- 
- // Initialize with first item active
- navItems[0].classList.add('text-blue-600');
- updateIndicator(navItems[0]);
-
-
-
- 
- 
