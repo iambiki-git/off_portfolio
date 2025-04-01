@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Particles.js Working Example</title>
-  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background-color: #000;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .content-section {
+      min-height: 100vh;
+      padding: 80px 0;
+      position: relative;
+      /* background-color: rgba(0, 0, 0, 0.7); */
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    .content-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    @keyframes float-delay {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(20px) rotate(-5deg); }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+    @keyframes blink {
+        from, to { border-color: transparent }
+        50% { border-color: white; }
+    }
+    
+    .animate-float { animation: float 8s ease-in-out infinite; }
+    .animate-float-delay { animation: float-delay 10s ease-in-out infinite 2s; }
+    .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+    .typed-text { border-right: 2px solid white; animation: blink .7s step-end infinite; }
+
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Load particles.js from CDN -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -499,7 +567,174 @@
       </script>
     </footer>
 
-    <script src="script.js"></script>
-  
+  <script>
+    //Initialization script 
+    // Wait for everything to load
+    window.addEventListener('load', function() {
+        // Simple configuration that definitely works
+        particlesJS('particles-js', {
+        "particles": {
+            "number": {
+            "value": 80,
+            "density": {
+                "enable": true,
+                "value_area": 800
+            }
+            },
+            "color": {
+            "value": "#ffffff"
+            },
+            "shape": {
+            "type": "circle"
+            },
+            "opacity": {
+            "value": 0.5,
+            "random": false
+            },
+            "size": {
+            "value": 3,
+            "random": true
+            },
+            "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1
+            },
+            "move": {
+            "enable": true,
+            "speed": 2,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+            "onhover": {
+                "enable": true,
+                "mode": "grab"
+            },
+            "onclick": {
+                "enable": true,
+                "mode": "push"
+            }
+            }
+        },
+        "retina_detect": true
+        });
+    });
+
+    // Toggle mobile menu
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        
+        // Optional: Change icon when menu is open
+        const icon = this.querySelector('svg');
+        if (menu.classList.contains('hidden')) {
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+        } else {
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+        }
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.getElementById('mobile-menu-button').querySelector('svg').innerHTML = 
+            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+        });
+    });
+
+    // Scroll-triggered animations
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('.content-section');
+        const scrollPosition = window.scrollY + window.innerHeight;
+        
+        sections.forEach(section => {
+        const sectionPosition = section.offsetTop;
+        if (scrollPosition > sectionPosition + 100) {
+            section.classList.add('active');
+        }
+        });
+    });
+
+    // Trigger initial check in case content is already in view
+    window.dispatchEvent(new Event('scroll'));
+
+
+
+    // Form submission simulation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const successIcon = document.getElementById('successIcon');
+    
+    // Show sending state
+    btnText.textContent = 'Sending...';
+    btn.disabled = true;
+    
+    // Simulate form submission (replace with actual AJAX call)
+    setTimeout(() => {
+      // Show success state
+      btnText.textContent = 'Sent!';
+      successIcon.classList.remove('hidden');
+      
+      // Clear form
+      this.reset();
+      
+      // Reset button after 2 seconds
+      setTimeout(() => {
+        btnText.textContent = 'Send Message';
+        successIcon.classList.add('hidden');
+        btn.disabled = false;
+      }, 2000);
+    }, 1000);
+  });
+
+
+  // Simple typing animation (can be enhanced with a library like Typed.js)
+  document.addEventListener('DOMContentLoaded', function() {
+        const typedTextSpan = document.querySelector('.typed-text');
+        const cursorSpan = document.querySelector('.cursor');
+        const texts = typedTextSpan.getAttribute('data-typed').replace(/[\[\]"]/g, '').split(',');
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function type() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typedTextSpan.textContent = currentText.substring(0, charIndex-1);
+                charIndex--;
+            } else {
+                typedTextSpan.textContent = currentText.substring(0, charIndex+1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(type, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+        
+        setTimeout(type, 1000);
+    });
+  </script>
 </body>
 </html>
