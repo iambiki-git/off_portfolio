@@ -4,75 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>BIKI GRG.</title>
+  <title>Biki Gurung</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      overflow-x: hidden;
-      font-family: 'Poppins', sans-serif;
-    }
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      background-color: #000;
-      z-index: -1;
-      top: 0;
-      left: 0;
-    }
-
-    .content-section {
-      min-height: 100vh;
-      padding: 80px 0;
-      position: relative;
-      /* background-color: rgba(0, 0, 0, 0.7); */
-      backdrop-filter: blur(2px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease-out;
-    }
-    .content-section.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Smooth scrolling for anchor links */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    @keyframes float-delay {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(20px) rotate(-5deg); }
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
-    }
-    @keyframes blink {
-        from, to { border-color: transparent }
-        50% { border-color: white; }
-    }
-    
-    .animate-float { animation: float 8s ease-in-out infinite; }
-    .animate-float-delay { animation: float-delay 10s ease-in-out infinite 2s; }
-    .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
-    .typed-text { border-right: 2px solid white; animation: blink .7s step-end infinite; }
-
-  </style>
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- Load particles.js from CDN -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
@@ -80,178 +16,261 @@
 
     <!-- Minimalist Transparent Navbar -->
     <nav class="fixed w-full px-6 py-4 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-          <!-- Logo/Name -->
-          <h1 class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-400 text-xl font-medium transition-all duration-500 hover:scale-105">
-            BIKI GRG.
-          </h1>
-          
-          <!-- Desktop Navigation Links -->
-          <div class="hidden md:flex space-x-8">
-            <a href="#about" class="relative group text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors duration-300">
-              About
-              <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#work" class="relative group text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors duration-300">
-              Work
-              <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#contact" class="relative group text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors duration-300">
-              Contact
-              <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </div>
-          
-          <!-- Mobile menu button -->
-          <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo/Name -->
+        <a href="/" class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-400 text-xl font-medium transition-all duration-500 hover:scale-105">
+          BIKI GRG.
+        </a>
+        
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex space-x-8">
+          <a href="#about" class="relative group text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors duration-300">
+            About
+            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#work" class="relative group text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors duration-300">
+            Work
+            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#contact" class="relative group text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors duration-300">
+            Contact
+            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+          </a>
         </div>
         
-        <!-- Mobile Menu (hidden by default) -->
-        <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 right-0 bg-black bg-opacity-90 backdrop-blur-sm px-6 py-4">
-          <div class="flex flex-col space-y-4">
-            <a href="#about" class="text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors">About</a>
-            <a href="#work" class="text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors">Work</a>
-            <a href="#contact" class="text-white hover:text-gray-300 text-sm uppercase tracking-wider transition-colors">Contact</a>
-          </div>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Menu (hidden by default) -->
+      <div id="mobile-menu" class="md:hidden hidden fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm px-6 py-20 mt-16 h-screen w-full z-40 overflow-y-auto">
+        <div class="flex flex-col space-y-8 items-center justify-center h-full">
+          <a href="#about" class="text-white hover:text-gray-300 text-xl uppercase tracking-wider transition-colors py-4">About</a>
+          <a href="#work" class="text-white hover:text-gray-300 text-xl uppercase tracking-wider transition-colors py-4">Work</a>
+          <a href="#contact" class="text-white hover:text-gray-300 text-xl uppercase tracking-wider transition-colors py-4">Contact</a>
         </div>
+      </div>
     </nav>
 
     <!-- The container must have an ID (not class) -->
     <div id="particles-js"></div>
     
     <!-- Hero Section -->
-    <section class="mb-8 content-section relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Animated background elements -->
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-500 mix-blend-screen filter blur-3xl animate-float"></div>
-            <div class="absolute bottom-1/3 right-1/4 w-72 h-72 rounded-full bg-blue-500 mix-blend-screen filter blur-3xl animate-float-delay"></div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <!-- Animated greeting text -->
-            <div class="text-sm font-mono text-indigo-300 mb-4 tracking-widest animate-fade-in">
-                HEY THERE! I'M
-            </div>
-            
-            <!-- Name with gradient text -->
-            <h1 class="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-400">
-                    .BIKI GRG.
-                </span>
-            </h1>
-            
-            <!-- Tagline with typing animation -->
-            <div class="text-2xl md:text-3xl font-light text-gray-300 mb-10 h-12">
-                <span class="typed-text" data-typed='["Aspiring Software Developer", "Passionate Coder"]'></span>
-                <span class="cursor"></span>
-            </div>
-            
-            <!-- Animated CTA button -->
-            <a href="#work" class="relative group border-2 border-indigo-400 px-10 py-4 text-sm uppercase tracking-wider 
-                   text-white bg-transparent hover:bg-indigo-400/10 transition-all duration-500 
-                   overflow-hidden rounded-lg inline-flex items-center">
-                  <span class="relative z-10 flex items-center">
-                      View My Work
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                  </span>
-                  <span class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-1"></span>
-              </a>
-
-            
-            <!-- Scroll indicator -->
-            <!-- <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div class="w-6 h-10 border-2 border-indigo-300 rounded-full flex justify-center">
-                    <div class="w-1 h-2 bg-indigo-300 rounded-full mt-2"></div>
+      <section class="mb-8 content-section relative min-h-screen flex items-center justify-center overflow-hidden">
+          <!-- Animated background elements -->
+          <div class="absolute inset-0 opacity-20">
+              <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-500 mix-blend-screen filter blur-3xl animate-float"></div>
+              <div class="absolute bottom-1/3 right-1/4 w-72 h-72 rounded-full bg-blue-500 mix-blend-screen filter blur-3xl animate-float-delay"></div>
+          </div>
+          
+          <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+              <!-- Animated greeting text -->
+              <div class="text-sm font-mono text-indigo-300/80 mb-4 tracking-[0.3em] animate-fade-in">
+                <div class="flex justify-center items-center gap-2">
+                  <span class="inline-block opacity-0 animate-float-in" style="--delay: 0.1s">HI</span>
+                  <span class="text-indigo-300/40 animate-pulse">•</span>
+                  <span class="inline-block opacity-0 animate-float-in" style="--delay: 0.2s">HELLO</span>
+                  <span class="text-indigo-300/40 animate-pulse">•</span>
+                  <span class="inline-block opacity-0 animate-float-in" style="--delay: 0.3s">नमस्ते</span>
+                  <span class="text-indigo-300/60">,</span>
                 </div>
-            </div> -->
-        </div>
-    </section>
+                <div class="mt-1 opacity-0 animate-fade-in" style="animation-delay: 0.4s">
+                  I'M
+                </div>
+              </div>
+              
+              <!-- Name with gradient text -->
+              <h1 class="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
+                  <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-400">
+                      .BIKI GRG.
+                  </span>
+              </h1>
+              
+              <!-- Tagline with typing animation -->
+              <div class="text-2xl md:text-3xl font-light text-gray-300 mb-10 h-12">
+                  <span class="typed-text" data-typed='["Aspiring Software Developer", "Passionate Coder"]'></span>
+                  <span class="cursor"></span>
+              </div>
+              
+              <!-- Animated CTA button -->
+              <a href="#work" class="relative group border-2 border-indigo-400 px-10 py-4 text-sm uppercase tracking-wider 
+                    text-white bg-transparent hover:bg-indigo-400/10 transition-all duration-500 
+                    overflow-hidden rounded-lg inline-flex items-center">
+                    <span class="relative z-10 flex items-center">
+                        View My Work
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-1"></span>
+                </a>
+
+              
+              <!-- Scroll indicator -->
+              <!-- <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                  <div class="w-6 h-10 border-2 border-indigo-300 rounded-full flex justify-center">
+                      <div class="w-1 h-2 bg-indigo-300 rounded-full mt-2"></div>
+                  </div>
+              </div> -->
+          </div>
+      </section>
 
     <!-- Minimalist About Section -->
-    <section id="about" class="py-16 md:py-10 relative">
-        <!-- Background texture -->
-        <div class="absolute inset-0 -z-10 overflow-hidden">
-          <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-950 to-black"></div>
-          <div class="absolute top-1/3 left-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-gray-900 to-transparent transform -translate-x-1/2"></div>
+    <section id="about" class="py-20 md:py-16 relative overflow-hidden">
+      <!-- Animated background elements -->
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900"></div>
+        <div class="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-purple-900/10 blur-3xl"></div>
+        <div class="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-indigo-900/10 blur-3xl"></div>
+      </div>
+    
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Header with animated underline -->
+        <div class="text-center mb-24">
+          <h2 class="text-4xl md:text-5xl font-light text-gray-300 mb-6 tracking-tight">
+            <span class="relative inline-block">
+              <span class="relative z-10">Approach</span>
+              <span class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700"></span>
+            </span>
+          </h2>
+          <p class="text-gray-400 text-sm uppercase tracking-[0.3em]">
+            PRINCIPLES THAT GUIDE MY WORK
+          </p>
         </div>
-      
-        <div class="max-w-4xl mx-auto px-6">
-          <!-- Header -->
-          <div class="text-center mb-20">
-            <h2 class="text-4xl font-normal text-white mb-4 tracking-tight">
-              <span class="relative">
-                Approach
-                <span class="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></span>
-              </span>
-            </h2>
-            <p class="text-gray-500 text-sm max-w-md mx-auto tracking-wider">
-              PRINCIPLES THAT GUIDE MY WORK
+    
+        <!-- Core philosophy with floating effect -->
+        <div class="mb-28 transform transition-all duration-500 hover:scale-[1.01]">
+          <div class="border-t border-gray-800/50 pt-10">
+            <p class="text-xl text-gray-300 leading-relaxed text-center max-w-3xl mx-auto font-light">
+              I craft <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-300">intuitive digital experiences</span> 
+              through <span class="text-white font-medium">thoughtful design</span> and 
+              <span class="text-white font-medium">meticulous execution</span>, 
+              blending aesthetics with purpose.
             </p>
           </div>
-      
-        <!-- Core philosophy -->
-        <div class="mb-24">
-          <div class="border-t border-gray-800 pt-12">
-            <p class="text-xl text-gray-300 leading-relaxed text-center max-w-2xl mx-auto">
-              I believe in <span class="text-white">intentional design</span> and <span class="text-white">precise execution</span>, 
-              creating digital experiences that are both beautiful and purposeful.
-            </p>
+        </div>
+    
+        <!-- Animated metrics -->
+        <div class="flex flex-wrap justify-center gap-12 mb-28">
+          <div class="text-center group">
+            <div class="text-6xl font-light text-gray-300 mb-3 font-mono relative">
+              <span class="inline-block transform group-hover:-translate-y-1 transition-transform">07</span>
+              <div class="absolute -bottom-2 left-1/2 w-8 h-0.5 bg-gradient-to-r from-purple-400 to-indigo-500 transform -translate-x-1/2 scale-0 group-hover:scale-100 origin-center transition-transform"></div>
+            </div>
+            <div class="text-xs text-gray-400 tracking-widest uppercase">DISCIPLINES</div>
+          </div>
+          <div class="text-center group">
+            <div class="text-6xl font-light text-gray-300 mb-3 font-mono relative">
+              <span class="inline-block transform group-hover:-translate-y-1 transition-transform">∞</span>
+              <div class="absolute -bottom-2 left-1/2 w-8 h-0.5 bg-gradient-to-r from-purple-400 to-indigo-500 transform -translate-x-1/2 scale-0 group-hover:scale-100 origin-center transition-transform"></div>
+            </div>
+            <div class="text-xs text-gray-400 tracking-widest uppercase">CREATIVITY</div>
+          </div>
+          <div class="text-center group">
+            <div class="text-6xl font-light text-gray-300 mb-3 font-mono relative">
+              <span class="inline-block transform group-hover:-translate-y-1 transition-transform">100%</span>
+              <div class="absolute -bottom-2 left-1/2 w-8 h-0.5 bg-gradient-to-r from-purple-400 to-indigo-500 transform -translate-x-1/2 scale-0 group-hover:scale-100 origin-center transition-transform"></div>
+            </div>
+            <div class="text-xs text-gray-400 tracking-widest uppercase">DEDICATION</div>
           </div>
         </div>
-      
-        <!-- Key metrics -->
-        <div class="flex justify-center gap-12 mb-24">
-          <div class="text-center">
-            <div class="text-5xl font-light text-white mb-2 font-mono">07</div>
-            <div class="text-xs text-gray-500 tracking-widest">DISCIPLINES</div>
+    
+        <!-- Skills grid with hover effects -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-28 w-full">
+          <div class="group relative p-6 rounded-xl bg-gradient-to-br from-gray-900/50 to-gray-900/0 border border-gray-800/50 hover:border-purple-500/30 transition-all duration-500">
+            <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <h3 class="text-xs text-gray-400 uppercase mb-6 tracking-widest pb-2 relative">
+              <span class="relative z-10">Frontend Mastery</span>
+              <span class="absolute bottom-0 left-0 w-8 h-px bg-gradient-to-r from-purple-400 to-indigo-500"></span>
+            </h3>
+            <ul class="space-y-4 relative z-10">
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mr-3"></span>
+                React/Next.js Architecture
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mr-3"></span>
+                State Management
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mr-3"></span>
+                Performance Optimization
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mr-3"></span>
+                Responsive Design
+              </li>
+            </ul>
           </div>
-          <div class="text-center">
-            <div class="text-5xl font-light text-white mb-2 font-mono">100%</div>
-            <div class="text-xs text-gray-500 tracking-widest">FOCUS</div>
+          
+          <div class="group relative p-6 rounded-xl bg-gradient-to-br from-gray-900/50 to-gray-900/0 border border-gray-800/50 hover:border-indigo-500/30 transition-all duration-500">
+            <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <h3 class="text-xs text-gray-400 uppercase mb-6 tracking-widest pb-2 relative">
+              <span class="relative z-10">Backend Expertise</span>
+              <span class="absolute bottom-0 left-0 w-8 h-px bg-gradient-to-r from-purple-400 to-indigo-500"></span>
+            </h3>
+            <ul class="space-y-4 relative z-10">
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mr-3"></span>
+                Node.js Ecosystem
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mr-3"></span>
+                Database Architecture
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mr-3"></span>
+                API Development
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mr-3"></span>
+                Authentication Systems
+              </li>
+            </ul>
+          </div>
+          
+          <div class="group relative p-6 rounded-xl bg-gradient-to-br from-gray-900/50 to-gray-900/0 border border-gray-800/50 hover:border-blue-500/30 transition-all duration-500">
+            <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <h3 class="text-xs text-gray-400 uppercase mb-6 tracking-widest pb-2 relative">
+              <span class="relative z-10">DevOps & More</span>
+              <span class="absolute bottom-0 left-0 w-8 h-px bg-gradient-to-r from-purple-400 to-indigo-500"></span>
+            </h3>
+            <ul class="space-y-4 relative z-10">
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mr-3"></span>
+                CI/CD Pipelines
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mr-3"></span>
+                Cloud Infrastructure
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mr-3"></span>
+                Performance Monitoring
+              </li>
+              <li class="text-gray-200 text-sm flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mr-3"></span>
+                Security Best Practices
+              </li>
+            </ul>
           </div>
         </div>
-      
-        <!-- Methodology -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 w-full">
-            <div>
-              <h3 class="text-xs text-gray-500 uppercase mb-6 tracking-widest border-b border-gray-800 pb-2">Frontend</h3>
-              <ul class="space-y-4">
-                <li class="text-white text-sm">React/Next.js</li>
-                <li class="text-white text-sm">State Management</li>
-                <li class="text-white text-sm">Performance</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-xs text-gray-500 uppercase mb-6 tracking-widest border-b border-gray-800 pb-2">Backend</h3>
-              <ul class="space-y-4">
-                <li class="text-white text-sm">Node.js</li>
-                <li class="text-white text-sm">Database Design</li>
-                <li class="text-white text-sm">API Development</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-xs text-gray-500 uppercase mb-6 tracking-widest border-b border-gray-800 pb-2">DevOps</h3>
-              <ul class="space-y-4">
-                <li class="text-white text-sm">CI/CD</li>
-                <li class="text-white text-sm">Cloud Infrastructure</li>
-                <li class="text-white text-sm">Monitoring</li>
-              </ul>
-            </div>
-          </div>
-      
-        <!-- CTA -->
+    
+        <!-- Animated CTA -->
         <div class="flex justify-center">
-          <a href="#work" class="group px-0 py-3 text-white text-sm tracking-wider flex items-center border-b border-transparent hover:border-white transition-all duration-500">
-            VIEW WORK SAMPLES
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+          <a href="#work" class="group relative px-0 py-3 text-white text-sm tracking-wider flex items-center overflow-hidden">
+            <span class="relative z-10 flex items-center">
+              EXPLORE MY WORK
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-indigo-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
           </a>
         </div>
       </div>
@@ -305,20 +324,20 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                 </svg>
                             </div>
-                            <span class="text-gray-300 text-base font-medium">Productivity</span>
+                            <span class="text-gray-300 text-base font-medium">Block Based Programming</span>
                         </div>
                     </div>
                     <div class="p-5">
-                        <h3 class="text-lg font-normal text-white mb-1">Task Manager</h3>
-                        <p class="text-gray-400 text-xs mb-3 leading-relaxed">Collaborative tool with real-time team features.</p>
+                        <h3 class="text-lg font-normal text-white mb-1">Pi Maker</h3>
+                        <p class="text-gray-400 text-xs mb-3 leading-relaxed">Pi Maker is a block based programming platform for beginners.</p>
                         <div class="flex flex-wrap gap-1.5">
-                            <span class="px-2.5 py-0.5 bg-white bg-opacity-10 text-gray-300 text-2xs rounded-full">Vue.js</span>
-                            <span class="px-2.5 py-0.5 bg-white bg-opacity-10 text-gray-300 text-2xs rounded-full">Firebase</span>
-                            <span class="px-2.5 py-0.5 bg-white bg-opacity-10 text-gray-300 text-2xs rounded-full">Tailwind</span>
+                            <span class="px-2.5 py-0.5 bg-white bg-opacity-10 text-gray-300 text-2xs rounded-full">Python</span>
+                            <span class="px-2.5 py-0.5 bg-white bg-opacity-10 text-gray-300 text-2xs rounded-full">Django</span>
+                            <span class="px-2.5 py-0.5 bg-white bg-opacity-10 text-gray-300 text-2xs rounded-full">JavaScript</span>
                         </div>
                     </div>
                     <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-x-2">
-                        <a href="#" class="px-4 py-1.5 bg-white text-gray-900 text-xs rounded hover:bg-gray-100 transition-colors">View</a>
+                        <a href="https://pi-maker.com/" target="_blank" class="px-4 py-1.5 bg-white text-gray-900 text-xs rounded hover:bg-gray-100 transition-colors">View</a>
                         <a href="#" class="px-4 py-1.5 border border-white text-white text-xs rounded hover:bg-white hover:bg-opacity-10 transition-colors">Details</a>
                     </div>
                 </div>
@@ -516,26 +535,47 @@
   
               <!-- Social links with circular hover effect -->
               <div class="flex space-x-5">
-                  <a href="#" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110">
-                      <svg class="w-5 h-5 text-gray-400 hover:text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                      </svg>
+                <a href="https://github.com/iambiki-git" target="_blank" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110 group">
+                  <svg class="w-5 h-5 text-gray-400 group-hover:text-[#181717]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </a>
+
+                  <a href="https://www.linkedin.com/in/bikram-gurung-1749b9319/" target="_blank" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110 group">
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-[#0077B5]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
                   </a>
-                  <a href="#" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110">
-                      <svg class="w-5 h-5 text-gray-400 hover:text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                      </svg>
+
+                  <a href="https://www.instagram.com/iambikigrg/" target="_blank" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110 group">
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-transparent" fill="currentColor" viewBox="0 0 24 24">
+                      <defs>
+                        <linearGradient id="insta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#405de6" />
+                          <stop offset="25%" stop-color="#833ab4" />
+                          <stop offset="50%" stop-color="#c13584" />
+                          <stop offset="75%" stop-color="#e1306c" />
+                          <stop offset="100%" stop-color="#fd1d1d" />
+                        </linearGradient>
+                      </defs>
+                      <path 
+                        fill="url(#insta-gradient)" 
+                        class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"
+                      />
+                      <path 
+                        fill="currentColor" 
+                        class="group-hover:opacity-0 transition-opacity duration-300"
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"
+                      />
+                    </svg>
                   </a>
-                  <a href="#" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110">
-                      <svg class="w-5 h-5 text-gray-400 hover:text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
-                      </svg>
-                  </a>
-                  <a href="#" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110">
+
+                  <!-- <a href="#" class="p-2 rounded-full transition-all duration-300 hover:bg-gray-800/30 hover:scale-110">
                       <svg class="w-5 h-5 text-gray-400 hover:text-orange-400" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M22.162 5.656a8.384 8.384 0 01-2.402.658A4.196 4.196 0 0021.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 00-7.126 3.814 11.874 11.874 0 01-8.62-4.37 4.168 4.168 0 00-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 01-1.894-.523v.052a4.185 4.185 0 003.355 4.101 4.21 4.21 0 01-1.89.072A4.185 4.185 0 007.97 16.65a8.394 8.394 0 01-6.191 1.732 11.83 11.83 0 006.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 002.087-2.165z"/>
                       </svg>
-                  </a>
+                  </a> -->
               </div>
   
               <!-- Contact info with subtle reveal effect -->
@@ -566,174 +606,6 @@
       </script>
     </footer>
 
-  <script>
-    //Initialization script 
-    // Wait for everything to load
-    window.addEventListener('load', function() {
-        // Simple configuration that definitely works
-        particlesJS('particles-js', {
-        "particles": {
-            "number": {
-            "value": 80,
-            "density": {
-                "enable": true,
-                "value_area": 800
-            }
-            },
-            "color": {
-            "value": "#ffffff"
-            },
-            "shape": {
-            "type": "circle"
-            },
-            "opacity": {
-            "value": 0.5,
-            "random": false
-            },
-            "size": {
-            "value": 3,
-            "random": true
-            },
-            "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#ffffff",
-            "opacity": 0.4,
-            "width": 1
-            },
-            "move": {
-            "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "grab"
-            },
-            "onclick": {
-                "enable": true,
-                "mode": "push"
-            }
-            }
-        },
-        "retina_detect": true
-        });
-    });
-
-    // Toggle mobile menu
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-        
-        // Optional: Change icon when menu is open
-        const icon = this.querySelector('svg');
-        if (menu.classList.contains('hidden')) {
-        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-        } else {
-        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
-        }
-    });
-
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.add('hidden');
-        document.getElementById('mobile-menu-button').querySelector('svg').innerHTML = 
-            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-        });
-    });
-
-    // Scroll-triggered animations
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('.content-section');
-        const scrollPosition = window.scrollY + window.innerHeight;
-        
-        sections.forEach(section => {
-        const sectionPosition = section.offsetTop;
-        if (scrollPosition > sectionPosition + 100) {
-            section.classList.add('active');
-        }
-        });
-    });
-
-    // Trigger initial check in case content is already in view
-    window.dispatchEvent(new Event('scroll'));
-
-
-
-    // Form submission simulation
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const btn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const successIcon = document.getElementById('successIcon');
-    
-    // Show sending state
-    btnText.textContent = 'Sending...';
-    btn.disabled = true;
-    
-    // Simulate form submission (replace with actual AJAX call)
-    setTimeout(() => {
-      // Show success state
-      btnText.textContent = 'Sent!';
-      successIcon.classList.remove('hidden');
-      
-      // Clear form
-      this.reset();
-      
-      // Reset button after 2 seconds
-      setTimeout(() => {
-        btnText.textContent = 'Send Message';
-        successIcon.classList.add('hidden');
-        btn.disabled = false;
-      }, 2000);
-    }, 1000);
-  });
-
-
-  // Simple typing animation (can be enhanced with a library like Typed.js)
-  document.addEventListener('DOMContentLoaded', function() {
-        const typedTextSpan = document.querySelector('.typed-text');
-        const cursorSpan = document.querySelector('.cursor');
-        const texts = typedTextSpan.getAttribute('data-typed').replace(/[\[\]"]/g, '').split(',');
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        
-        function type() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typedTextSpan.textContent = currentText.substring(0, charIndex-1);
-                charIndex--;
-            } else {
-                typedTextSpan.textContent = currentText.substring(0, charIndex+1);
-                charIndex++;
-            }
-            
-            if (!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                setTimeout(type, 1500);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 50 : 100);
-            }
-        }
-        
-        setTimeout(type, 1000);
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
